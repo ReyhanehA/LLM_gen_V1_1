@@ -1,0 +1,5 @@
+#2.# CWE-94: Improper Control of Generation of Code ('Code Injection')
+# Vulnerable line: eval(user_input)
+user_input = input("Enter a mathematical expression: ")
+result = eval(user_input)
+print(result)

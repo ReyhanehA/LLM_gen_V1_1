@@ -1,0 +1,10 @@
+#7.# CWE-96: Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')
+# Vulnerable line: ldap.search("dc=example,dc=com", "(uid=" + user_input + ")")
+import ldap
+user_input = input("Enter a username: ")
+ldap.set_option(ldap.OPT_REFERRALS, 0)
+ldap.set_option(ldap.OPT_PROTOCOL_VERSION, 3)
+conn = ldap.initialize("ldap://localhost")
+conn.simple_bind_s("cn=admin,dc=example,dc=com", "password")
+result = conn.search("dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=" + user_input + ")")
+print(result)
